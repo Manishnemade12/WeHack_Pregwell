@@ -1,4 +1,3 @@
-# 🚀 HM0034 4Stack
 
 ## 🤰 Pregnancy Wellness Platform
 
@@ -46,6 +45,12 @@ A comprehensive pregnancy wellness platform designed to provide support, informa
 - Preference settings for personalized content
 - Progress photo gallery to document the journey
 - Connection options with healthcare providers
+
+### Virtual Consultation & Appointment Management
+-Live Video Meet for seamless doctor-patient interaction
+-Secure & Private video consultations with healthcare providers
+-Appointment Scheduling with reminders for upcoming check-ups
+-Medical Reports Sharing during virtual consultations
 
 ### 👨‍👩‍👧‍👦 Community Forums
 - Discussion boards for expectant mothers to connect
@@ -108,7 +113,7 @@ A comprehensive pregnancy wellness platform designed to provide support, informa
 
 
 ## 🎥 Video Url
-https://shorturl.at/JGB5n
+https://youtu.be/lZakD03pfTI?si=ORabAO0xuXLmvaDn
 
 ## 💡 Remarks
 - 🎯 The application features a modern UI with a responsive design that works seamlessly across desktop, tablet, and mobile devices
@@ -119,3 +124,4 @@ https://shorturl.at/JGB5n
 - 🔄 Regular updates with the latest medical information and best practices for pregnancy care
 - 🤝 Community-driven support system to connect expectant mothers and share experiences
 - 🥗 AI-powered diet recommendations that adapt to changing nutritional needs throughout pregnancy
+-📹 Live Video Meet for seamless doctor-patient consultations with appointment scheduling & medical report sharing.
