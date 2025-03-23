@@ -1,0 +1,409 @@
+// import express from 'express';
+// import cors from 'cors';
+// import mongoose from 'mongoose';
+// import dotenv from 'dotenv';
+// import path from 'path';
+// import multer from 'multer';
+// import cookieParser from 'cookie-parser';
+// import { fileURLToPath } from 'url';
+// import { dirname } from 'path';
+// import helmet from 'helmet';
+
+// // Import routes
+// import authRoutes from './routes/authRoutes.js';
+// import appointmentRoutes from './routes/appointmentRoutes.js';
+// import mealRoutes from './routes/mealRoutes.js';
+// import communityRoutes from './routes/communityRoutes.js';
+// import userRoutes from './routes/userRoutes.js';
+// import dietPlanRoutes from './routes/dietPlanRoutes.js';
+
+// // Import the diet plan controller functions directly
+// import { getUserCalories, updateUserCalories } from './controllers/dietPlanController.js';
+// import { protect } from './middleware/authMiddleware.js';
+
+// // Load environment variables
+// dotenv.config();
+
+// const app = express();
+
+// // Get __dirname equivalent in ESM
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
+
+// // Middleware
+// app.use(helmet());
+// app.use(helmet.contentSecurityPolicy({
+//   directives: {
+//     defaultSrc: ["'self'"],
+//     scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+//     styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+//     fontSrc: ["'self'", "https://fonts.gstatic.com"],
+//     imgSrc: ["'self'", "https:", "data:"],
+//     connectSrc: ["'self'", "https://*", "http://*"]
+//   }
+// }));
+
+// // Configure CORS to allow all origins
+// app.use(cors({
+//   origin: '*',
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+//   optionsSuccessStatus: 200
+// }));
+
+// // app.use(cors({
+// //   origin: "https://hackathon-pccoe.vercel.app",  // Change * to your frontend URL
+// //   credentials: true,  // Allow credentials (cookies, tokens)
+// //   methods: ["GET", "POST", "PUT", "DELETE"],  // Allowed HTTP methods
+// //   allowedHeaders: ["Content-Type", "Authorization"],  // Allowed headers
+// // }));
+
+// // const allowedOrigins = [
+// //   "https://hackathon-pccoe.vercel.app",
+// //   "http://localhost:3000"
+// // ];
+
+// // app.use(cors({
+// //   origin: function (origin, callback) {
+// //     if (!origin || allowedOrigins.includes(origin)) {
+// //       callback(null, true);
+// //     } else {
+// //       callback(new Error("CORS not allowed"));
+// //     }
+// //   },
+// //   credentials: true,
+// //   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+// //   allowedHeaders: ['Content-Type', 'Authorization'],
+// //   optionsSuccessStatus: 200
+// // }));
+
+
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(cookieParser());
+
+// // Debug middleware
+// app.use((req, res, next) => {
+//   console.log('Request Headers:', req.headers);
+//   console.log('Authorization:', req.headers.authorization);
+//   next();
+// });
+
+// // Serve static files from the uploads directory
+// // app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// // Test route
+// app.get('/', (req, res) => {
+//   res.json({ message: 'API is working!' });
+// });
+
+// // Test route
+// app.get('/api/test', (req, res) => {
+//   res.json({ 
+//     message: 'API is working',
+//     env: {
+//       nodeEnv: process.env.NODE_ENV,
+//       frontendUrl: process.env.FRONTEND_URL
+//     }
+//   });
+// });
+
+// // Connect to MongoDB
+// mongoose.connect(process.env.MONGO_URI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// })
+// .then(() => console.log('MongoDB Connected'))
+// .catch(err => console.error('MongoDB connection error:', err));
+
+// // Routes
+// app.use('/api/auth', authRoutes);
+// app.use('/api/appointments', appointmentRoutes);
+// app.use('/api/meals', mealRoutes);
+// app.use('/api/community', communityRoutes);
+// app.use('/api/users', userRoutes);
+// app.use('/api/diet-plans', dietPlanRoutes);
+
+// // Direct routes for diet-plan
+// app.options('/api/diet-plan', (req, res) => {
+//   // Add CORS headers directly
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   res.status(200).end();
+// });
+
+// app.get('/api/diet-plan', protect, (req, res) => {
+//   // Add CORS headers directly
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+//   // Call the controller function
+//   getUserCalories(req, res);
+// });
+
+// app.post('/api/diet-plan', protect, (req, res) => {
+//   // Add CORS headers directly
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+//   // Call the controller function
+//   updateUserCalories(req, res);
+// });
+
+// // Error handling middleware
+// app.use((err, req, res, next) => {
+//   console.error('Error:', err);
+//   if (err instanceof multer.MulterError) {
+//     if (err.code === 'LIMIT_FILE_SIZE') {
+//       return res.status(400).json({ 
+//         success: false,
+//         message: 'File size is too large. Max size is 5MB.' 
+//       });
+//     }
+//   }
+//   res.status(500).json({ 
+//     success: false,
+//     message: 'Something went wrong!',
+//     error: err.message 
+//   });
+// });
+
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// }); 
+import express from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import path from 'path';
+import multer from 'multer';
+import cookieParser from 'cookie-parser';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import helmet from 'helmet';
+
+// Import routes
+import authRoutes from './routes/authRoutes.js';
+import appointmentRoutes from './routes/appointmentRoutes.js';
+import mealRoutes from './routes/mealRoutes.js';
+import communityRoutes from './routes/communityRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+import dietPlanRoutes from './routes/dietPlanRoutes.js';
+
+// Import controllers
+import { getUserCalories, updateUserCalories } from './controllers/dietPlanController.js';
+import { protect } from './middleware/authMiddleware.js';
+
+dotenv.config();
+const app = express();
+
+// Get __dirname in ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Middleware
+app.use(helmet());
+app.use(cors({
+  origin: process.env.FRONTEND_URL || '*',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+
+// Debug Middleware
+app.use((req, res, next) => {
+  console.log(`Incoming request: ${req.method} ${req.url}`);
+  console.log('Headers:', req.headers);
+  next();
+});
+
+// Test route
+app.get('/', (req, res) => {
+  res.json({ message: 'API is working!' });
+});
+
+// MongoDB Connection
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log('MongoDB Connected'))
+.catch(err => console.error('MongoDB connection error:', err));
+
+// Routes
+app.use('/api/auth', authRoutes); // <-- Ensure frontend calls `/api/auth/login`
+app.use('/api/appointments', appointmentRoutes);
+app.use('/api/meals', mealRoutes);
+app.use('/api/community', communityRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/diet-plans', dietPlanRoutes);
+
+// Diet Plan Routes
+app.get('/api/diet-plan', protect, getUserCalories);
+app.post('/api/diet-plan', protect, updateUserCalories);
+
+// Error Handling Middleware
+app.use((err, req, res, next) => {
+  console.error('Error:', err);
+  if (err instanceof multer.MulterError && err.code === 'LIMIT_FILE_SIZE') {
+    return res.status(400).json({ success: false, message: 'File size is too large. Max size is 5MB.' });
+  }
+  res.status(500).json({ success: false, message: 'Something went wrong!', error: err.message });
+});
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+// // import cors from 'cors';
+// // import mongoose from 'mongoose';
+// // import dotenv from 'dotenv';
+// // import path from 'path';
+// // import multer from 'multer';
+// // import cookieParser from 'cookie-parser';
+// // import { fileURLToPath } from 'url';
+// // import { dirname } from 'path';
+// // import helmet from 'helmet';
+
+// // // Import routes
+// // import authRoutes from './routes/authRoutes.js';
+// // import appointmentRoutes from './routes/appointmentRoutes.js';
+// // import mealRoutes from './routes/mealRoutes.js';
+// // import communityRoutes from './routes/communityRoutes.js';
+// // import userRoutes from './routes/userRoutes.js';
+// // import dietPlanRoutes from './routes/dietPlanRoutes.js';
+
+// // // Import the diet plan controller functions directly
+// // import { getUserCalories, updateUserCalories } from './controllers/dietPlanController.js';
+// // import { protect } from './middleware/authMiddleware.js';
+
+// // // Load environment variables
+// // dotenv.config();
+
+// // const app = express();
+
+// // // Get __dirname equivalent in ESM
+// // const __filename = fileURLToPath(import.meta.url);
+// // const __dirname = dirname(__filename);
+
+// // // Middleware
+// // app.use(helmet());
+// // app.use(helmet.contentSecurityPolicy({
+// //   directives: {
+// //     defaultSrc: ["'self'"],
+// //     scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+// //     styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+// //     fontSrc: ["'self'", "https://fonts.gstatic.com"],
+// //     imgSrc: ["'self'", "https:", "data:"],
+// //     connectSrc: ["'self'", "https://*", "http://*"]
+// //   }
+// // }));
+
+// // // Configure CORS to allow requests from the frontend
+// // app.use(cors({
+// //   origin: 'http://localhost:3000', // Allow requests from your frontend
+// //   credentials: true, // Allow cookies and credentials
+// //   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed HTTP methods
+// //   allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+// //   optionsSuccessStatus: 200
+// // }));
+
+// // app.use(express.json());
+// // app.use(express.urlencoded({ extended: true }));
+// // app.use(cookieParser());
+
+// // // Debug middleware
+// // app.use((req, res, next) => {
+// //   console.log('Request Headers:', req.headers);
+// //   console.log('Authorization:', req.headers.authorization);
+// //   next();
+// // });
+
+// // // Serve static files from the uploads directory
+// // // app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// // // Test route
+// // app.get('/', (req, res) => {
+// //   res.json({ message: 'API is working!' });
+// // });
+
+// // app.get('/api/test', (req, res) => {
+// //   res.json({ 
+// //     message: 'API is working',
+// //     env: {
+// //       nodeEnv: process.env.NODE_ENV,
+// //       frontendUrl: process.env.FRONTEND_URL
+// //     }
+// //   });
+// // });
+
+// // // Connect to MongoDB
+// // mongoose.connect(process.env.MONGO_URI, {
+// //   useNewUrlParser: true,
+// //   useUnifiedTopology: true,
+// // })
+// // .then(() => console.log('MongoDB Connected'))
+// // .catch(err => console.error('MongoDB connection error:', err));
+
+// // // Routes
+// // app.use('/api/auth', authRoutes);
+// // app.use('/api/appointments', appointmentRoutes);
+// // app.use('/api/meals', mealRoutes);
+// // app.use('/api/community', communityRoutes);
+// // app.use('/api/users', userRoutes);
+// // app.use('/api/diet-plans', dietPlanRoutes);
+
+// // // Direct routes for diet-plan
+// // app.options('/api/diet-plan', (req, res) => {
+// //   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+// //   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+// //   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+// //   res.status(200).end();
+// // });
+
+// // app.get('/api/diet-plan', protect, (req, res) => {
+// //   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+// //   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+// //   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+// //   getUserCalories(req, res);
+// // });
+
+// // app.post('/api/diet-plan', protect, (req, res) => {
+// //   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+// //   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+// //   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+// //   updateUserCalories(req, res);
+// // });
+
+// // // Error handling middleware
+// // app.use((err, req, res, next) => {
+// //   console.error('Error:', err);
+// //   if (err instanceof multer.MulterError) {
+// //     if (err.code === 'LIMIT_FILE_SIZE') {
+// //       return res.status(400).json({ 
+// //         success: false,
+// //         message: 'File size is too large. Max size is 5MB.' 
+// //       });
+// //     }
+// //   }
+// //   res.status(500).json({ 
+// //     success: false,
+// //     message: 'Something went wrong!',
+// //     error: err.message 
+// //   });
+// // });
+
+// // const PORT = process.env.PORT || 5000;
+// // app.listen(PORT, () => {
+// //   console.log(`Server running on port ${PORT}`);
+// // });
