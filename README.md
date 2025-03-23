@@ -109,8 +109,8 @@ A comprehensive pregnancy wellness platform designed to provide support, informa
 ![Image](https://github.com/user-attachments/assets/78058ddd-3061-46c1-b915-9186493a1da8)
 ![Image](https://github.com/user-attachments/assets/f1558318-d49e-4fc9-a4ed-391d23bd6ca0)
 ![Image](https://github.com/user-attachments/assets/e8b129ab-0d8e-4fb0-97ad-841322a5f58e)
-![Image]([https://github.com/user-attachments/assets/e8b129ab-0d8e-4fb0-97ad-841322a5f58e](https://res.cloudinary.com/do0jgbkjz/image/upload/v1740907188/vbm-admin/file_1740907188086.jpg)
 
+![Alt text](https://res.cloudinary.com/do0jgbkjz/image/upload/v1740907188/vbm-admin/file_1740907188086.jpg)
 
 
 ## 🎥 Video Url
