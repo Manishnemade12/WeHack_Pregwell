@@ -122,4 +122,4 @@ A comprehensive pregnancy wellness platform designed to provide support, informa
 - 🔄 Regular updates with the latest medical information and best practices for pregnancy care
 - 🤝 Community-driven support system to connect expectant mothers and share experiences
 - 🥗 AI-powered diet recommendations that adapt to changing nutritional needs throughout pregnancy
--📹 Live Video Meet for seamless doctor-patient consultations with appointment scheduling & medical report sharing.
+- 📹 Live Video Meet for seamless doctor-patient consultations with appointment scheduling & medical report sharing.
