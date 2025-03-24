@@ -113,10 +113,6 @@ A comprehensive pregnancy wellness platform designed to provide support, informa
 ![Alt text](https://res.cloudinary.com/do0jgbkjz/image/upload/v1742715272/vbm-admin/file_1742715272857.png)
 ![Alt text](https://res.cloudinary.com/do0jgbkjz/image/upload/v1742715176/vbm-admin/file_1742715176001.png)
 
-
-## 🎥 Video Url
-https://youtu.be/lZakD03pfTI?si=ORabAO0xuXLmvaDn
-
 ## 💡 Remarks
 - 🎯 The application features a modern UI with a responsive design that works seamlessly across desktop, tablet, and mobile devices
 - 📱 Comprehensive pregnancy tracking with week-by-week information, including visual representations of baby's growth compared to common fruits and vegetables
