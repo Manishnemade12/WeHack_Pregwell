@@ -124,6 +124,6 @@ A comprehensive pregnancy wellness platform designed to provide support, informa
 - 🥗 AI-powered diet recommendations that adapt to changing nutritional needs throughout pregnancy
 - 📹 Live Video Meet for seamless doctor-patient consultations with appointment scheduling & medical report sharing.
 
-## Certificate
+<!-- ## Certificate
 
-![WeHack Certificate](https://res.cloudinary.com/do0jgbkjz/image/upload/v1745824160/vbm-admin/file_1745824160474.jpg)
+![WeHack Certificate](https://res.cloudinary.com/do0jgbkjz/image/upload/v1745824160/vbm-admin/file_1745824160474.jpg) -->
