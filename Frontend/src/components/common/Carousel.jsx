@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Box, Typography, Button, Container, IconButton, useTheme, useMediaQuery } from '@mui/material';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import { Link as RouterLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const slides = [
   {
@@ -43,6 +45,7 @@ function Carousel() {
   const [isAnimating, setIsAnimating] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const { currentUser } = useContext(AuthContext);
 
   const nextSlide = () => {
     if (isAnimating) return;
@@ -167,7 +170,7 @@ function Carousel() {
               </Typography>
               <Button
                 component={RouterLink}
-                to={slide.buttonLink}
+                to={currentUser ? "/dashboard" : slide.buttonLink}
                 variant="contained"
                 size="large"
                 sx={{

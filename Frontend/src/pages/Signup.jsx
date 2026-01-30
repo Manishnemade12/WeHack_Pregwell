@@ -391,7 +391,7 @@ function Signup() {
         const data = await response.json();
         
         if (data.success) {
-          navigate('/dashboard');
+          navigate('/login'); // Redirect to login after successful registration
         } else {
           setError(data.message || 'Registration failed. Please try again.');
         }

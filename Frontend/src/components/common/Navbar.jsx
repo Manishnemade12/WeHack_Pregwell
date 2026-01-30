@@ -24,7 +24,8 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CloseIcon from '@mui/icons-material/Close';
-import { useAuth } from '../../hooks/useAuth';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const navItems = [
   /* { name: 'Appointments', path: '/appointments' }, */
@@ -45,7 +46,7 @@ const settings = [
 ];
 
 function Navbar() {
-  const { currentUser, logout } = useAuth();
+  const { currentUser, logout } = useContext(AuthContext);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
@@ -372,7 +373,7 @@ function Navbar() {
               className="logo-text"
               variant="h6"
               component={RouterLink}
-              to="/"
+              to={currentUser ? "/dashboard" : "/"}
               sx={{
                 fontFamily: '"Montserrat", sans-serif',
                 fontWeight: 700,

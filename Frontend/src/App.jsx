@@ -48,8 +48,6 @@ import LaborPrep from './pages/care/prenatal/LaborPrep';
 import PostnatalExercises from './pages/care/postnatal/PostnatalExercises';
 import PostnatalExerciseDetails from './pages/care/postnatal/PostnatalExerciseDetails';
 import Meditation from './components/imports/Meditation';
-import VideoCall from './pages/VideoCall/VideoCall';
-
 // Create a theme
 const theme = createTheme({
   palette: {
@@ -149,7 +147,6 @@ function App() {
                   <Route path="/care/postnatal/exercises" element={<PostnatalExercises />} />
                   <Route path="/care/postnatal/exercises/:exerciseId" element={<PostnatalExerciseDetails />} />
                   <Route path="/Meditation" element={< Meditation/>} />
-                  <Route path="/VideoCall" element={< VideoCall/>} />
                 </Routes>
                 <Footer />
                 <ChatBot />
